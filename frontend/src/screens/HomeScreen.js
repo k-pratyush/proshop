@@ -9,12 +9,11 @@ import Loader from '../components/Loader';
 const Homescreen = () => {
   const dispatch = useDispatch();
   const productList = useSelector(state => state.productList);
-  const {loading, error, products} = productList;
+  let {loading, error, products} = productList;
 
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);
-
 
   return (
     <div>
@@ -25,11 +24,7 @@ const Homescreen = () => {
          <h3><Message variant='danger'>{error}</Message></h3>
       ) : (
       <Row>
-        {products.map(product => (
-          <Col key={product._id} sm={12} md={6} lg={3} >
-            <Product product={product}/>
-          </Col>
-        ))}
+        {products.map(product => <Col key={product._id} sm={12} md={6} lg={3} ><Product product={product}/></Col>)}
       </Row>
       )}
     </div>
